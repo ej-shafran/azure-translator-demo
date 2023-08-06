@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { v4 as uuid } from "uuid";
 import dotenv from "dotenv";
 
@@ -16,26 +16,14 @@ translate(
   console.log(JSON.stringify(res.data, null, 2));
 });
 
-/**
- * @typedef {{ text: string; to: string; }} Translation
- */
+type Translation = { text: string; to: string };
 
-/**
- * @template T
- * @template K
- *
- * @typedef {Partial<Pick<T, K>> & Omit<T, K>} PartialByKeys
- */
+type PartialByKeys<T, K extends keyof T> = Partial<Pick<T, K>> & Omit<T, K>;
 
-/**
- * translate.
- *
- * @param {PartialByKeys<Translation, "to">[]} data
- * @param {{ textType: "html" | "plain"; from?: string; } | undefined} options
- *
- * @returns {Promise<import("axios").AxiosResponse<{ translations: Translation[] }[]>>}
- */
-async function translate(data, options) {
+async function translate(
+  data: PartialByKeys<Translation, "to">[],
+  options: { textType: "html" | "plain"; from?: string } | undefined
+): Promise<AxiosResponse<{ translations: Translation[] }[]>> {
   const endpoint = "https://api.cognitive.microsofttranslator.com";
 
   const key = process.env.AZURE_API_KEY;
@@ -52,7 +40,7 @@ async function translate(data, options) {
 
   const to = Array.from(new Set(data.map(({ to }) => to).filter(Boolean)));
 
-  return axios({
+  return axios<{ translations: Translation[] }[]>({
     baseURL: endpoint,
     url: "/translate",
     method: "POST",

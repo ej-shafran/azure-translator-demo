@@ -14,4 +14,4 @@ Finally, install the dependencies with `npm install`.
 
 ## Usage
 
-Once you've done the [setup](#setup), you can run `node index.mjs` to see the translator in action.
+Once you've done the [setup](#setup), you can run `npm start` to see the translator in action.
