@@ -15,3 +15,10 @@ Finally, install the dependencies with `npm install`.
 ## Usage
 
 Once you've done the [setup](#setup), you can run `npm start` to see the translator in action.
+
+You can go into `index.ts` to edit the call to `translate` or just take a look at the code.
+
+## Notes
+
+The `.env` file is in `.gitignore` so you don't push your resource's key to GitHub.
+The `index.js` file is in `.gitignore` so you don't push the (possibly outdated) compiled output of your code to GitHub.
