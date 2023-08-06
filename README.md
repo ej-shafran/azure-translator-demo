@@ -18,7 +18,7 @@ Once you've done the [setup](#setup), you can run `npm start` to see the transla
 
 You can go into `index.ts` to edit the call to `translate` or just take a look at the code.
 
-# Troubleshooting
+## Troubleshooting
 
 If the URL is not found or something of the sort, you can edit the `endpoint` constant within the `translate` function to be what is mentioned in your resource page (see the photo above). It should be correct no matter the resource but you never know...
 
